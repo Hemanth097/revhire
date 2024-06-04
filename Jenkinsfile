@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Hemanth097/revhire'
+                git branch: 'main', url: 'https://github.com/Hemanth097/revhire.git'
             }
         }
 
@@ -35,7 +35,8 @@ pipeline {
             steps {
                 script {
                     withKubeConfig([credentialsId: 'kubeconfig-credentials-id']) {
-                        sh 'kubectl apply -f services.yaml'
+                        
+                        sh 'kubectl apply -f k8s/services.yaml'
                     }
                 }
             }
