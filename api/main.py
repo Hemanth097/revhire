@@ -79,7 +79,7 @@ def login(ud: login_model = Depends()):
     try:
         ud.password = hashlib.md5(ud.password.encode()).hexdigest()
         data = users_requests.user_login(ud)
-        if not data:
+        if data == False :
             raise HTTPException(status_code=401, detail="Invalid username or password")
         data["time"] = dt.datetime.now().strftime("%d %m %Y %H %M %S")
         token = jwt.encode(data, SECRET_KEY, ALGORITHM)
