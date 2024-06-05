@@ -52,6 +52,7 @@ pipeline {
                         
                         // Get the list of pods to ensure the deployment was successful
                         sh 'kubectl get pods'
+                    }
                 }
             }
         }
