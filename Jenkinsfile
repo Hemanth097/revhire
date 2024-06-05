@@ -36,6 +36,7 @@ pipeline {
                 script {
                     withKubeConfig([credentialsId: KUBECONFIG]) {
                         sh 'kubectl apply -f services.yaml'
+                        
                     }
                 }
             }
