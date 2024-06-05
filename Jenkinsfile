@@ -35,9 +35,23 @@ pipeline {
             steps {
                 script {
                     withKubeConfig([credentialsId: env.KUBECONFIG]) {
+                        // Print the kubectl version
+                        sh 'kubectl version'
+                        
+                        // Print the current context to verify kubeconfig
+                        sh 'kubectl config current-context'
+                        
+                        // List the nodes to check cluster connectivity
+                        sh 'kubectl get nodes'
+                        
+                        // Apply the Kubernetes configuration
                         sh 'kubectl apply -f services.yaml'
                         
-                    }
+                        // Check the status of the deployment
+                        sh 'kubectl rollout status deployment/revhire-deployment'
+                        
+                        // Get the list of pods to ensure the deployment was successful
+                        sh 'kubectl get pods'
                 }
             }
         }
