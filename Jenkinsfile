@@ -45,6 +45,7 @@ pipeline {
                             sh 'kubectl apply -f services.yaml'
                             sh 'kubectl rollout status deployment/revhire-deployment'
                             sh 'kubectl get pods'
+                        }
                     }
                 }
             }
