@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "hemanth097/revhire:latest"
-        KUBECONFIG = credentials('kubeconfig-credentials-id')
+        KUBECONFIG = credentials('kubeconfig-credentials')
     }
 
     stages {
@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    withKubeConfig([credentialsId: 'kubeconfig-credentials-id']) {
+                    withKubeConfig([credentialsId: env.KUBECONFIG]) {
                         
                         sh 'kubectl apply -f services.yaml'
                     }
