@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revcont
-          image: hemanth097/revhirerepo:latest
+          image: hemanth097/revhire:latest
           ports:
             - containerPort: 8000
 
